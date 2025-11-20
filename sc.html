@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Scientific Calculator</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #283c86, #45a247);
+    }
+
+    .calc {
+        width: 330px;
+        padding: 20px;
+        background: #1B2A41;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .display {
+        width: 90%;
+        height: 70px;
+        font-size: 45px;
+        text-align: right;
+        padding: 15px;
+        border: none;
+        background: rgba(255,255,255,0.8);
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: inset 0 0 12px rgba(0,0,0,0.2);
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+    }
+
+    button {
+        padding: 15px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.7);
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: white;
+        transform: translateY(-3px);
+    }
+
+    .equal {
+        background: #ff9500;
+        color: white;
+    }
+
+    .equal:hover {
+        background: #e68900;
+    }
+
+    .operator {
+        background: #3ac5ff;
+        color: white;
+    }
+
+    .operator:hover {
+        background: #12a8e8;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="calc">
+    <input id="display" class="display" disabled>
+
+    <div class="buttons">
+        <button onclick="clearDisplay()" class="operator">C</button>
+        <button onclick="append('(')"> ( </button>
+        <button onclick="append(')')"> ) </button>
+        <button onclick="append('%')" class="operator">%</button>
+        <button onclick="backspace()">⌫</button>
+
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('/')">÷</button>
+        <button onclick="append('Math.sqrt(')">√</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('*')">×</button>
+        <button onclick="append('Math.pow(')">xʸ</button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('-')">−</button>
+        <button onclick="append('Math.sin(')">sin</button>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button onclick="calculate()" class="equal">=</button>
+        <button onclick="append('+')">+</button>
+        <button onclick="append('Math.cos(')">cos</button>
+
+        <button onclick="append('Math.tan(')">tan</button>
+        <button onclick="append('Math.log(')">log</button>
+    </div>
+</div>
+
+<script>
+let display = document.getElementById("display");
+
+function append(val) {
+    display.value += val;
+}
+
+function clearDisplay() {
+    display.value = "";
+}
+
+function backspace() {
+    display.value = display.value.slice(0, -1);
+}
+
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch {
+        display.value = "Error";
+    }
+}
+</script>
+
+</body>
+</html>
